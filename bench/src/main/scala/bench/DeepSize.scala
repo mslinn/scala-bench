@@ -2,21 +2,20 @@ package bench
 
 import java.lang.reflect.Modifier
 import java.util
-
 import scala.collection.mutable
 
 object DeepSize {
   private val SKIP_POOLED_OBJECTS: Boolean = false
 
   private def isPooled(paramObject: AnyRef): Boolean = {
-    paramObject match{
-      case e: java.lang.Enum[_]   => true
-      case s: java.lang.String    => s eq s.intern()
-      case b: java.lang.Boolean   => (b eq java.lang.Boolean.TRUE) || (b eq java.lang.Boolean.FALSE)
-      case i: java.lang.Integer   => i eq java.lang.Integer.valueOf(i)
-      case s: java.lang.Short     => s eq java.lang.Short.valueOf(s)
-      case b: java.lang.Byte      => b eq java.lang.Byte.valueOf(b)
-      case l: java.lang.Long      => l eq java.lang.Long.valueOf(l)
+    paramObject match {
+      case e: java.lang.Enum[_] => true
+      case s: java.lang.String => s eq s.intern()
+      case b: java.lang.Boolean => (b eq java.lang.Boolean.TRUE) || (b eq java.lang.Boolean.FALSE)
+      case i: java.lang.Integer => i eq java.lang.Integer.valueOf(i)
+      case s: java.lang.Short => s eq java.lang.Short.valueOf(s)
+      case b: java.lang.Byte => b eq java.lang.Byte.valueOf(b)
+      case l: java.lang.Long => l eq java.lang.Long.valueOf(l)
       case c: java.lang.Character => c eq java.lang.Character.valueOf(c)
       case _ => false
     }
@@ -42,15 +41,15 @@ object DeepSize {
     val previouslyVisited = new util.IdentityHashMap[AnyRef, AnyRef]
     val objectQueue = mutable.Queue(obj0)
     var current = 0L
-    while(objectQueue.nonEmpty){
+    while (objectQueue.nonEmpty) {
       val obj = objectQueue.dequeue()
-      if (!skipObject(obj, previouslyVisited)){
+      if (!skipObject(obj, previouslyVisited)) {
         previouslyVisited.put(obj, null)
         val thisSize = agent.Agent.getObjectSize(obj)
 
         // get size of object + primitive variables + member pointers
         // for array header + len + if primitive total value for primitives
-        obj.getClass match{
+        obj.getClass match {
           case a if a.isArray =>
             current += thisSize
             // primitive type arrays has length two, skip them (they included in the shallow size)
@@ -65,7 +64,7 @@ object DeepSize {
             var currentClass: Class[_] = c
             do {
               val objFields = currentClass.getDeclaredFields
-              for(field <- objFields) {
+              for (field <- objFields) {
                 if (
                   !Modifier.isStatic(field.getModifiers) &&
                     !field.getType.isPrimitive
