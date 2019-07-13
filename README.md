@@ -12,17 +12,17 @@ Comments are welcome on the [issues page](https://github.com/mslinn/scala-bench/
 New benchmarks for the following collection types were added.
 
 ### Mutable
-`AnyRefMap`, `ArrayBuffer`, `ArrayDeque`, `ArraySeq`, `HashMap`, `LinkedHashMap`, `LinkedHashSet` and `ListBuffer`.
+`AnyRefMap`, `ArrayBuffer`, `ArrayDeque`, `ArraySeq`, `CollisionProofHashMap`, `HashMap`, `LinkedHashMap`, `LinkedHashSet`, and `ListBuffer`.
 
 ### Immutable
-`HashMap`, `ListMap`, `ListSet`, `SeqMap`, `TreeSeqMap` and `VectorMap`.
+`HashMap`, `ListMap`, `ListSet`, `SeqMap`, `TreeSeqMap`, TreeMap`, `TreeSet`, and `VectorMap`.
 
 ## TODO
 
 Other types that are not currently benchmarked include:
 
 ### Mutable
-`BitSet`, `CollisionProofHashMap`, `HashSet`, `IntMap`, `LongMap`.
+`BitSet`, `HashSet`, `IntMap`, and `LongMap`.
 
 ### Immutable
-`BitSet`, `TreeMap`, and `TreeSet`.
+`BitSet`.

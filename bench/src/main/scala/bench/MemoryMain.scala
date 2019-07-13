@@ -7,6 +7,8 @@ import scala.collection.immutable.Queue
 import scala.collection.{SortedSet, immutable, mutable}
 
 object MemoryMain {
+  implicit val objectOrdering: Ordering[Object] = Ordering.by { _.toString }
+
   def main(args: Array[String]): Unit = {
     def obj = new Object()
 
@@ -32,10 +34,10 @@ object MemoryMain {
 //      ("BitSet", n => immutable.BitSet.fromSpecific(nums(n, _ => obj).asInstanceOf[Iterator[Int]])), // meaningless garbage
       ("Set", nums(_, _ => obj).toSet),
       ("ListSet", n => immutable.ListSet(nums(n, _ => obj))),
-//      ("TreeSet", n => immutable.TreeSet(nums(n, _ => obj))), // no implicit Ordering defined for Object
+      ("TreeSet", n => immutable.TreeSet.from(nums(n, _ => obj))),
       ("Map", nums(_, _ => (obj, obj)).toMap),
       ("HashMap", n => immutable.HashMap.from(nums(n, _ => (obj, obj)))),
-//      ("TreeMap", n => immutable.TreeMap.from(nums(n, _ => (obj, obj)))), // no implicit Ordering defined for Object
+      ("TreeMap", n => immutable.TreeMap.from(nums(n, _ => (obj, obj)))),
       ("TreeSeqMap", n => immutable.TreeSeqMap.from(nums(n, _ => (obj, obj)))),
       ("ListMap", n => immutable.ListMap.from(nums(n, _ => (obj, obj)))),
       ("SeqMap", n => immutable.SeqMap.from(nums(n, _ => (obj, obj)))),
@@ -51,7 +53,7 @@ object MemoryMain {
       ("m.ListBuffer", n => mutable.ListBuffer(nums(n, _ => obj))),
       ("m.AnyRefMap", n => mutable.AnyRefMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.Map", n => mutable.Map(nums(n, _ => (obj, obj)).toSeq: _*)),
-//      ("m.CollisionProofHashMap", n => mutable.CollisionProofHashMap(nums(n, _ => (obj, obj)).toSeq: _*)), // no implicit Ordering defined for Object
+      ("m.CollisionProofHashMap", n => mutable.CollisionProofHashMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.HashMap", n => mutable.HashMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.LinkedHashMap", n => mutable.LinkedHashMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.Set", n => mutable.Set(nums(n, _ => obj))),
