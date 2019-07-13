@@ -2,9 +2,8 @@ package bench
 
 import java.text.NumberFormat
 import java.util.Locale
+import scala.collection.{immutable, mutable}
 import scala.jdk.CollectionConverters._
-import scala.collection.immutable.Queue
-import scala.collection.{SortedSet, immutable, mutable}
 
 object MemoryMain {
   implicit val objectOrdering: Ordering[Object] = Ordering.by { _.toString }
@@ -19,7 +18,7 @@ object MemoryMain {
       ("Array", nums(_, _ => obj).toArray),
       ("ArraySeq", n => immutable.ArraySeq(nums(n, _ => obj))),
       ("List", nums(_, _ => obj).toList),
-      ("UnforcedStream", n => Stream(nums(n, _ => obj))), // curious to know if there is any performance difference between Stream and LazyList
+      ("UnforcedStream", n => Stream(nums(n, _ => obj))), // Is there any performance difference between Stream and LazyList?
       ("ForcedStream", { n =>
         val x = Stream(nums(n, _ => obj))
         x.foreach(_ => ())
@@ -42,9 +41,8 @@ object MemoryMain {
       ("ListMap", n => immutable.ListMap.from(nums(n, _ => (obj, obj)))),
       ("SeqMap", n => immutable.SeqMap.from(nums(n, _ => (obj, obj)))),
       ("VectorMap", n => immutable.VectorMap.from(nums(n, _ => (obj, obj)))),
-
       ("SortedSet", n => immutable.SortedSet(nums(n: Int, identity).toSeq: _*)),
-      ("Queue", Queue[AnyRef](nums(_: Int, _ => obj))),
+      ("Queue", immutable.Queue[AnyRef](nums(_: Int, _ => obj))),
 
       ("m.ArraySeq", n => mutable.ArraySeq(nums(n, _ => obj))),
       ("m.ArrayBuffer", n => mutable.ArrayBuffer(nums(n, _ => obj))),
