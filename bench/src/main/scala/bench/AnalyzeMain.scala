@@ -1,10 +1,8 @@
 package bench
 
-import java.math.{MathContext, RoundingMode}
 import java.text.{DecimalFormat, NumberFormat}
 import java.util.Locale
 import ammonite.ops._
-//import pprint.Config.Colors._
 import scala.collection.mutable
 
 /**
@@ -12,11 +10,14 @@ import scala.collection.mutable
   */
 object AnalyzeMain {
   def main(args: Array[String]): Unit = {
-    val results: Map[(String, String, Long), Vector[Long]] = upickle.default.read[Map[(String, String, Long), Vector[Long]]](
-      read ! pwd / 'target / "results.json"
-    )
+    val results: Map[(String, String, Long), Vector[Long]] =
+      upickle.default.read[Map[(String, String, Long), Vector[Long]]](
+        read ! pwd / 'target / "results.json"
+      )
+
     val grouped: Map[String, Map[String, Map[Long, (Long, String)]]] = {
-      results.groupBy { case ((bench, _, _), _) => bench }
+      results
+        .groupBy { case ((bench, _, _), _) => bench }
         .map { case (bench, rest) =>
           bench -> rest.groupBy { case ((_, coll2, _), _) => coll2 }
             .map { case (coll: String, rest2: mutable.Map[(String, String, Long), Vector[Long]]) =>

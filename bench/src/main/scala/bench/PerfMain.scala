@@ -20,10 +20,13 @@ object PerfMain {
 
     // How large the collections will be in each benchmark
     val sizes = Seq(0, 1, 4, 16, 64, 256, 1024, 4096, 16192, 65536, 262144, 1048576)
+
     // How many times to repeat each benchmark
     val repeats = 7
+
     // How long each benchmark runs, in millis
     val duration = 2000
+
     // How long a benchmark can run before we stop incrementing it
     val cutoff = 400 * 1000 * 1000
 
@@ -80,4 +83,3 @@ object PerfMain {
     )
   }
 }
-

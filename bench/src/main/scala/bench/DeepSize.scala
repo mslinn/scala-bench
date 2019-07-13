@@ -59,6 +59,7 @@ object DeepSize {
                 objectQueue.enqueue(java.lang.reflect.Array.get(obj, i))
               }
             }
+
           case c =>
             current += thisSize
             var currentClass: Class[_] = c
@@ -77,9 +78,7 @@ object DeepSize {
               }
               currentClass = currentClass.getSuperclass
             } while (currentClass != null)
-
         }
-
       }
     }
     current
