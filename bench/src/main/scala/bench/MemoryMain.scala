@@ -57,6 +57,7 @@ object MemoryMain {
       ("m.HashMap", n => mutable.HashMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.LinkedHashMap", n => mutable.LinkedHashMap(nums(n, _ => (obj, obj)).toSeq: _*)),
       ("m.Set", n => mutable.Set(nums(n, _ => obj))),
+      ("m.HashSet", n => mutable.HashSet(nums(n, _ => obj))),
       ("m.LinkedHashSet", n => mutable.LinkedHashSet(nums(n, _ => obj))),
       ("m.Queue", n => mutable.Queue(nums(n, _ => obj))),
       ("m.PriQueue", n => mutable.PriorityQueue(nums(n, identity).toSeq: _*)),
