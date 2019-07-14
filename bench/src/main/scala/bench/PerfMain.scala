@@ -7,7 +7,7 @@ import scala.collection.mutable
 
 object PerfMain extends Excel {
   def main(args: Array[String]): Unit = {
-    val test = true
+    val testMode = args.contains("-t") // -t command line switch enables test mode
     val width = 15
 
     def formatItems[I: Integral](name: String, items: Seq[I]): String =
@@ -18,16 +18,16 @@ object PerfMain extends Excel {
     def printRow[I: Integral](name: String, items: Seq[I]): Unit = println(formatItems(name, items))
 
     // How large the collections will be in each benchmark
-    val sizes = if (test) Seq(4) else Seq(0, 1, 4, 16, 64, 256, 1024, 4096, 16192, 65536, 262144, 1048576)
+    val sizes = if (testMode) Seq(4) else Seq(0, 1, 4, 16, 64, 256, 1024, 4096, 16192, 65536, 262144, 1048576)
 
     // How many times to repeat each benchmark
-    val repeats = if (test) 1 else 7
+    val repeats = if (testMode) 1 else 7
 
     // How long each benchmark runs, in millis
-    val duration = if (test) 50 else 2000
+    val duration = if (testMode) 50 else 2000
 
     // How long a benchmark can run before we stop incrementing it
-    val cutoff = if (test) 400 else 400 * 1000 * 1000
+    val cutoff = if (testMode) 400 else 400 * 1000 * 1000
 
     cellManager.nextRow()
     cellManager.newHeaderCell("Size " + sizes.mkString(", "))
