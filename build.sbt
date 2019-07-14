@@ -17,7 +17,8 @@ val bench = project
     fork in run := true,
 
     libraryDependencies ++= Seq(
-      "com.lihaoyi"  %  "ammonite_2.13.0" % "1.6.9"
+      "com.lihaoyi"    %  "ammonite_2.13.0" % "1.6.9",
+      "org.apache.poi" %  "poi"             % "4.1.0",
     ),
     javaOptions in run += ("-javaagent:" + (packageBin in (agent, Compile)).value)
 )
