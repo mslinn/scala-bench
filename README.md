@@ -3,7 +3,7 @@
 This is the test program that was described in Li Haoyi's article entitled 
 [Benchmarking Scala Collections](http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html).
 
-Mike Slinn updated the code so it would run on Scala 2.13.0.
+Mike Slinn updated the code so it would run on Scala 2.13.0 and added Excel spreadsheet output.
 
 **This code should be carefully reviewed before its results are taken seriously.**
 Comments are welcome on the [issues page](https://github.com/mslinn/scala-bench/issues).
