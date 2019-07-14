@@ -3,6 +3,7 @@ package bench
 import org.apache.poi.hssf.usermodel.{HSSFCell, HSSFFont, HSSFRow, HSSFSheet, HSSFWorkbook}
 import org.apache.poi.ss.usermodel.{CellStyle, FillPatternType, IndexedColors}
 
+/** See https://poi.apache.org/components/spreadsheet/how-to.html */
 object ExcelDemo extends App with Excel {
   cellManager.nextRow()
   cellManager.newHeaderCell("Test Name")
