@@ -1,6 +1,8 @@
+<img src="https://raw.githubusercontent.com/mslinn/scala-bench/gh-pages/images/dragCarRacing.png"
+  style="float: right; width: 30%; margin-left: 1em; margin-bottom: 1em">
 # scala-bench
 
-This is the test program that was described in Li Haoyi's article entitled 
+This is the test program that was described in Li Haoyi's article entitled
 [Benchmarking Scala Collections](http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html).
 
 Mike Slinn updated the code so it would run on Scala 2.13.0 and added Excel spreadsheet output.
