@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function run {
+  time sbt "bench/runMain bench.${1}Main " 2>&1 > $1.out 
+}
+
+function runAll {
+  # Memory benchmarks
+  run Memory
+  
+  # Performance tests. Results in bench/target/results.json. Takes hours to run
+  run Perf
+
+  # Read bench/target/results.json, calculate means and standard deviations, writes results into a markdown table
+  run Analyze
+}
+
+
+nohup bash -c runAll &
