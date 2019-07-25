@@ -15,5 +15,6 @@ function runAll {
   run Analyze
 }
 
+export -f runAll
 
 nohup bash -c runAll &
