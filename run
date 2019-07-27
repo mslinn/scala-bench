@@ -17,4 +17,5 @@ function runAll {
 
 export -f run runAll
 
+rm *.out
 nohup bash -c runAll &

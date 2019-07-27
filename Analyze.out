@@ -1,0 +1,19 @@
+[0m[[0m[0minfo[0m] [0m[0mLoading project definition from /mnt/data/work/cadenzaHome/cadenzaCode/cadenzaCourseCode/ScalaCourses.com/group_scalaCore/scala-bench/project[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading settings for project scala-bench from build.sbt ...[0m
+[0m[[0m[0minfo[0m] [0m[0mSet current project to scala-bench (in build file:/mnt/data/work/cadenzaHome/cadenzaCode/cadenzaCourseCode/ScalaCourses.com/group_scalaCore/scala-bench/)[0m
+[0m[[0m[33mwarn[0m] [0m[0mMultiple main classes detected.  Run 'show discoveredMainClasses' to see the list[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning (fork) bench.AnalyzeMain [0m
+[0m[[0m[31merror[0m] [0m[0mException in thread "main" scala.MatchError: (Set,HashMap((lookup,Set,16192) -> Vector(127590039, 213832707, 212950408, 211479945, 218388888, 213017808, 215835519), (lookup,Set,4) -> Vector(3901, 33813, 33820, 33824, 33927, 33785, 33790), (lookup,Set,1) -> Vector(510, 6886, 6840, 6800, 6821, 6807, 6804), (lookup,Set,64) -> Vector(224729, 551091, 552793, 552115, 551394, 551645, 551752), (lookup,Set,65536) -> Vector(1850732394, 2289342857, 2237142857, 2173450704, 2221314285, 2246535211, 2258242857), (lookup,Set,0) -> Vector(7, 115, 115, 114, 114, 114, 114), (lookup,Set,256) -> Vector(929966, 2266353, 2280970, 2271179, 2271659, 2269903, 2267050), (lookup,Set,16) -> Vector(48227, 137359, 137093, 137093, 137083, 137058, 136990), (lookup,Set,4096) -> Vector(25119201, 45783087, 45902349, 45655535, 45982739, 45955418, 45908907), (lookup,Set,1024) -> Vector(4969605, 10413448, 10436132, 10399117, 10405118, 10431152, 10461857))) (of class scala.Tuple2)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.AnalyzeMain$.$anonfun$main$4(AnalyzeMain.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.StrictOptimizedMapOps.map(StrictOptimizedMapOps.scala:30)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.StrictOptimizedMapOps.map$(StrictOptimizedMapOps.scala:29)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.HashMap.map(HashMap.scala:39)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.AnalyzeMain$.$anonfun$main$2(AnalyzeMain.scala:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.StrictOptimizedMapOps.map(StrictOptimizedMapOps.scala:30)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.StrictOptimizedMapOps.map$(StrictOptimizedMapOps.scala:29)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.HashMap.map(HashMap.scala:39)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.AnalyzeMain$.main(AnalyzeMain.scala:21)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.AnalyzeMain.main(AnalyzeMain.scala)[0m
+[0m[[0m[31merror[0m] [0m[0mNonzero exit code returned from runner: 1[0m
+[0m[[0m[31merror[0m] [0m[0m(bench / Compile / [31mrunMain[0m) Nonzero exit code returned from runner: 1[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 4 s, completed Jul 26, 2019 12:09:04 AM[0m

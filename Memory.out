@@ -1,0 +1,24 @@
+[0m[[0m[0minfo[0m] [0m[0mLoading project definition from /mnt/data/work/cadenzaHome/cadenzaCode/cadenzaCourseCode/ScalaCourses.com/group_scalaCore/scala-bench/project[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading settings for project scala-bench from build.sbt ...[0m
+[0m[[0m[0minfo[0m] [0m[0mSet current project to scala-bench (in build file:/mnt/data/work/cadenzaHome/cadenzaCode/cadenzaCourseCode/ScalaCourses.com/group_scalaCore/scala-bench/)[0m
+[0m[[0m[33mwarn[0m] [0m[0mMultiple main classes detected.  Run 'show discoveredMainClasses' to see the list[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning (fork) bench.MemoryMain [0m
+[0m[[0m[31merror[0m] [0m[0mException in thread "main" java.util.NoSuchElementException: index out of range[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.Queue.apply(Queue.scala:68)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.Queue.apply(Queue.scala:43)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.MemoryMain$.$anonfun$main$106(MemoryMain.scala:85)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcJI$sp.apply(JFunction1$mcJI$sp.scala:17)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List.map(List.scala:226)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List.map(List.scala:82)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.MemoryMain$.$anonfun$main$105(MemoryMain.scala:85)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.Iterator$$anon$9.next(Iterator.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ListBuffer.addAll(ListBuffer.scala:126)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ListBuffer$.from(ListBuffer.scala:39)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List$.from(List.scala:624)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List$.from(List.scala:618)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.IterableOps$WithFilter.map(Iterable.scala:869)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.MemoryMain$.main(MemoryMain.scala:84)[0m
+[0m[[0m[31merror[0m] [0m[0m	at bench.MemoryMain.main(MemoryMain.scala)[0m
+[0m[[0m[31merror[0m] [0m[0mNonzero exit code returned from runner: 1[0m
+[0m[[0m[31merror[0m] [0m[0m(bench / Compile / [31mrunMain[0m) Nonzero exit code returned from runner: 1[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 10419 s, completed Jul 25, 2019 7:40:50 PM[0m
