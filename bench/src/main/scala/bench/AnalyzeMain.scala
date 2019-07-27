@@ -12,7 +12,7 @@ object AnalyzeMain {
   def main(args: Array[String]): Unit = {
     val results: Map[(String, String, Long), Vector[Long]] =
       upickle.default.read[Map[(String, String, Long), Vector[Long]]](
-        read ! pwd / 'target / "results.json"
+        read ! pwd / Symbol("target") / "results.json"
       )
 
     val grouped: Map[String, Map[String, Map[Long, (Long, String)]]] = {
@@ -20,26 +20,30 @@ object AnalyzeMain {
         .groupBy { case ((bench, _, _), _) => bench }
         .map { case (bench, rest) =>
           bench -> rest.groupBy { case ((_, coll2, _), _) => coll2 }
-            .map { case (coll: String, rest2: mutable.Map[(String, String, Long), Vector[Long]]) =>
-              coll -> rest2.groupBy { case ((_, _, size), _) => size }
-                .view.mapValues { items =>
-                  val divisor = (bench, coll) match {
-                    case ("lookup", _) => 100
-                    case ("foreach", "List-while" | "Array-while" | "m.Buffer") => 100
-                    case ("foreach", _) => 10
-                    case _ => 1
-                  }
-                  val sorted = items.toVector.flatMap { case ((_, _, _), res) => res }.sorted
-                  val middling = sorted.drop(1).dropRight(1).map(_ / divisor)
-                  val mean = middling.sum / middling.length
-                  val stdDev = math.sqrt(middling.map(x => (x - mean) * (x - mean)).sum / middling.length).toLong
-                  val accuracy = math.max(1, math.pow(10, math.log10(stdDev).toInt).toInt)
+            .map {
+              case (coll: String, rest2: mutable.Map[(String, String, Long), Vector[Long]]) =>
+                coll -> rest2.groupBy { case ((_, _, size), _) => size }
+                  .view.mapValues { items =>
+                    val divisor = (bench, coll) match {
+                      case ("lookup", _) => 100
+                      case ("foreach", "List-while" | "Array-while" | "m.Buffer") => 100
+                      case ("foreach", _) => 10
+                      case _ => 1
+                    }
+                    val sorted: Seq[Long] = items.toVector.flatMap { case ((_, _, _), res) => res }.sorted
+                    val middling: Seq[Long] = sorted.drop(1).dropRight(1).map(_ / divisor)
+                    val mean: Long = middling.sum / middling.length
+                    val stdDev: Long = math.sqrt(middling.map(x => (x - mean) * (x - mean)).sum.toDouble / middling.length.toDouble).toLong
+                    val accuracy: Int = math.max(1, math.pow(10, math.log10(stdDev.toDouble)).toInt)
 
-                  val stdDevStr = if (stdDev == 0.0) "0%"
-                  else new DecimalFormat("0.0").format(stdDev * 100.0 / math.abs(mean)) + "%"
+                    val stdDevStr: String = if (stdDev == 0.0) "0%"
+                                            else new DecimalFormat("0.0").format(stdDev * 100.0 / math.abs(mean)) + "%"
 
-                  (mean / accuracy * accuracy, stdDevStr)
-                }.toMap
+                    (mean / accuracy * accuracy, stdDevStr)
+                  }.toMap
+
+              case (x, y) =>
+                sys.error(s"AnalyzeMain.grouped, need to account for ($x, $y)")  // todo write me
             }
         }
     }
@@ -59,7 +63,7 @@ object AnalyzeMain {
       println()
       print("| " + ("**" + bench + "**").padTo(width, ' ') + " |")
       for (size <- Seq(0, 1, 4, 16, 64, 256, 1024, 4096, 16192, 65536, 262144, 1048576)) {
-        print(("**" + NumberFormat.getNumberInstance(Locale.US).format(size) + "**").reverse.padTo(width, ' ').reverse + " |")
+        print(("**" + NumberFormat.getNumberInstance(Locale.US).format(size.toLong) + "**").reverse.padTo(width, ' ').reverse + " |")
       }
       println()
       print("| " + " " * width + " |")
@@ -73,7 +77,7 @@ object AnalyzeMain {
         print(coll.padTo(width, ' '))
         print(" |")
         for (size <- Seq(0, 1, 4, 16, 64, 256, 1024, 4096, 16192, 65536, 262144, 1048576)) {
-          items.get(size) match {
+          items.get(size.toLong) match {
             case Some((mean, stdDev)) =>
               //              val ranges = Seq(
               //                1000000000 -> "s",
