@@ -1,6 +1,6 @@
 
 val sharedSettings = Seq(
-  //scalaVersion := "2.12.8"
+  //scalaVersion := "2.12.9"
   scalaVersion := "2.13.0",
   scalacOptions ++= List(
     "-deprecation",
