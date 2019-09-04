@@ -49,7 +49,7 @@ object PerfMain extends Excel {
           val key = benchmark.name -> bench.name
           val times =
             for (size <- sizes if !(cutoffSizes.getOrElse(key, Int.MaxValue) < size)) yield {
-              val buf = output.getOrElseUpdate((benchmark.name, bench.name, size), mutable.Buffer())
+              val buf = output.getOrElseUpdate((benchmark.name, bench.name, size.toLong), mutable.Buffer())
 
               def handle(run: Boolean): (Int, Long) = {
                 System.gc()
@@ -80,20 +80,20 @@ object PerfMain extends Excel {
           printRow(bench.name, times)
           cellManager.nextRow()
           cellManager.newDataCell(bench.name)
-          times.foreach { time => cellManager.newDataCell(time) }
+          times.foreach { time => cellManager.newDataCell(time.toLong) }
         }
       }
     }
-    rm(pwd / 'target / "results.json")
+    rm(pwd / Symbol("target") / "results.json")
     write(
-      pwd / 'target / "results.json",
+      pwd / Symbol("target") / "results.json",
       upickle.default.write(output.view.mapValues(_.toList).toMap)
     )
     output.view.mapValues(_.toList).toMap.foreach { case (k, v) =>
       cellManager.nextRow()
       cellManager.newDataCell(k._1)
       cellManager.newDataCell(k._2)
-      cellManager.newDataCell(k._3)
+      cellManager.newDataCell(k._3.toLong)
       v.foreach { x => cellManager.newDataCell(x.toDouble) }
     }
     writeFile(".")

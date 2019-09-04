@@ -31,3 +31,5 @@ val bench = project
     ),
     javaOptions in run += ("-javaagent:" + (packageBin in (agent, Compile)).value)
 )
+
+ThisBuild / turbo := true
